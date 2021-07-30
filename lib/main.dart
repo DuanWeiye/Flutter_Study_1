@@ -14,12 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Olympic Metal List',
+      title: '奥运奖牌榜',
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(title: 'Olympic Metal List'),
+      home: MyHomePage(title: '奥运奖牌榜'),
     );
   }
 }
@@ -140,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
     String finalText;
 
     setState(() {
-      _statusText = 'Loading...';
+      _statusText = '正在载入...';
     });
 
     var httpClient = http.Client();
@@ -154,13 +154,13 @@ class _MyHomePageState extends State<MyHomePage> {
       httpRet.stream.listen((value) {
         rawBytes.addAll(value);
         setState(() {
-          _statusText = 'Loading...' + rawBytes.length.toString() + '/' +
+          _statusText = '正在载入...' + rawBytes.length.toString() + '/' +
               totalLength.toString();
         });
       })
         ..onError((error) {
           setState(() {
-            _statusText = 'Error: ' + error.toString();
+            _statusText = '错误: ' + error.toString();
           });
           httpClient.close();
         })
@@ -171,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
           setState(() {
             if (httpRet.statusCode != 200) {
               isDataInvalid = true;
-              _statusText = 'Error: Network error.';
+              _statusText = '错误: 网络异常.';
             }
 
             if (finalText.startsWith('NG')) {
@@ -201,7 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 _statusText = '';
                 _metalInfo = newMetalList;
               } on Error {
-                _statusText = 'Error: Invalid data format.';
+                _statusText = '错误: 数据格式异常.';
               }
             }
 
@@ -211,16 +211,16 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     on SocketException {
       setState(() {
-        _statusText = 'Error: No Internet connection.';
+        _statusText = '错误: 网络连接失败.';
       });
     }
     on TimeoutException {
       setState(() {
-        _statusText = 'Error: Timeout.';
+        _statusText = '错误: 连接超时.';
       });
     } on Error catch (ex) {
       setState(() {
-        _statusText = 'Error: ' + ex.toString();
+        _statusText = '错误: ' + ex.toString();
       });
     }
   }
@@ -243,7 +243,7 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.refresh),
-            tooltip: 'Refresh',
+            tooltip: '刷新',
             onPressed: _getDataFromServer,
           ),
         ],
@@ -296,7 +296,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         label: Container (
                           width: displayWidth / 10,
                           child: Text(
-                            'Gold',
+                            '金牌',
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -318,7 +318,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         label: Container (
                           width: displayWidth / 10,
                           child: Text(
-                            'Silver',
+                            '银牌',
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -340,7 +340,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         label: Container (
                           width: displayWidth / 10,
                           child: Text(
-                            'Bronze',
+                            '铜牌',
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -362,7 +362,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         label: Container (
                           width: displayWidth / 10,
                           child: Text(
-                            'Total',
+                            '总数',
                             textAlign: TextAlign.center,
                           ),
                         ),
