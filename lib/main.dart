@@ -36,17 +36,17 @@ class MetalInfo {
   String country = '';
   int gold = 0;
   int silver = 0;
-  int bonze = 0;
+  int bronze = 0;
   int total = 0;
   Image flag;
   bool selected = false;
 
-  MetalInfo(this.country, this.gold, this.silver, this.bonze, this.flag) {
+  MetalInfo(this.country, this.gold, this.silver, this.bronze, this.flag) {
     this.country = country;
     this.gold = gold;
     this.silver = silver;
-    this.bonze = bonze;
-    this.total = gold + silver + bonze;
+    this.bronze = bronze;
+    this.total = gold + silver + bronze;
     this.flag = flag;
   }
 }
@@ -114,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container (
                     width: displayWidth / 10,
                     child: Text(
-                      eachCountry.bonze.toString(),
+                      eachCountry.bronze.toString(),
                       textAlign: TextAlign.center,
                     )),
                 ),
@@ -188,13 +188,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   String country = eachItem['country'];
                   int gold = eachItem['gold'];
                   int silver = eachItem['silver'];
-                  int bonze = eachItem['bonze'];
+                  int bronze = eachItem['bronze'];
                   Uint8List rawFlag = convert.base64Decode(eachItem['flag']);
 
                   newMetalList.add(MetalInfo(country,
                                              gold,
                                              silver,
-                                             bonze,
+                                             bronze,
                                              Image.memory(rawFlag)));
                 }
 
@@ -340,7 +340,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         label: Container (
                           width: displayWidth / 10,
                           child: Text(
-                            'Bonze',
+                            'Bronze',
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -351,9 +351,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             _isAscending = asscending;
 
                             if (asscending) {
-                              _metalInfo.sort((a, b) => a.bonze.compareTo(b.bonze));
+                              _metalInfo.sort((a, b) => a.bronze.compareTo(b.bronze));
                             } else {
-                              _metalInfo.sort((a, b) => b.bonze.compareTo(a.bonze));
+                              _metalInfo.sort((a, b) => b.bronze.compareTo(a.bronze));
                             }
                           });
                         },
